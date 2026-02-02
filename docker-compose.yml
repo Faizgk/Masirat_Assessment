@@ -22,14 +22,25 @@ services:
     ports:
       - "5000:5000"
 
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
-    container_name: nginx
-    restart: always
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: nginx/Dockerfile
+  #   container_name: nginx
+  #   restart: always
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - backend
+
+  frontend:
+    build: ./frontend
     ports:
-      - "3000:80"
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    stdin_open: true
+    tty: true
     depends_on:
       - backend
 
