@@ -38,6 +38,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # must use localhost as the backend is accessed from the browser
       - REACT_APP_API_URL=http://localhost:5000
     stdin_open: true
     tty: true
